@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TO DO</title>
+  <link rel="stylesheet" href="styles/bootstrap.css">
+  <script defer src="todo-app.js"></script>
+  <script type="module">
+    let {load, storageSwitch,} = await import("./todo-app/pageLoad.js")
+    if (localStorage.getItem("flag") === null) {
+      console.log('set')
+      localStorage.setItem("flag", "true")
+    }
+
+    let flag = localStorage.getItem("flag")
+    load(flag, "Дела мамы", "Мама");
+
+
+    const btn = [...document.getElementsByClassName('btn-info')][0]
+    btn.addEventListener('click', e => {
+      storageSwitch(e.target)
+      let flag = localStorage.getItem("flag")
+      load(flag, "Дела мамы", "Мама");
+    })
+
+
+  </script>
+</head>
+<body>
+<div class="container mb-5">
+  <nav class="nav">
+    <a href="index.html" class="nav-link">Мои дела</a>
+    <a href="mom.html" class="nav-link">Дела мамы</a>
+    <a href="dad.html" class="nav-link">Дела папы</a>
+  </nav>
+  <button class="btn btn-info" data-storage="localStorage">Перейти на сервеное хранилище</button>
+</div>
+<div id="todo-app" class="container"></div>
+</body>
+</html>
