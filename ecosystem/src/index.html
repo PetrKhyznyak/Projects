@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script type="module">
+    import CardValidator from "./main.js";
+    document.addEventListener('DOMContentLoaded', function() {
+      const cardNumber = document.getElementById('cardNumb');
+      const cardYear = document.getElementById('cardYear');
+      const cardMonth = document.getElementById('cardMonth');
+      const cardCvv = document.getElementById('cardCvv');
+      const email = document.getElementById('email')
+      const btn = document.querySelector(".btn")
+      const validator = new CardValidator(cardNumber, cardYear, cardMonth, cardCvv, email, btn);
+
+      console.log(validator.numberInput, cardNumber);
+
+      cardNumber.addEventListener('input', () => {
+        validator.numberSeparation();
+      })
+      cardNumber.addEventListener('blur', () => {
+        validator.isNumberValid();
+      });
+      cardYear.addEventListener('blur', () => {
+        validator.isExpiryDateValid()
+      });
+      cardMonth.addEventListener('blur', () => {
+        validator.isExpiryDateValid()
+      });
+      cardCvv.addEventListener('blur', () => {
+        validator.isCvvValid();
+      })
+      email.addEventListener('blur', () =>  {
+        validator.isEmailValid();
+      })
+
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <form action="#">
+      <div class="form-item ">
+        <div class="field-card_pan field">
+          <input type="text" class="form-input " id="cardNumb" pattern="[0-9 ]*" maxlength="19" inputmode="numeric" required  autocomplete="cc-number">
+          <label for="cardNumb">Номер карты</label>
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="field-card_date">
+          <div class="field-card_month field">
+            <input type="text" class="form-input " id="cardMonth" pattern="[0-9]*" maxlength="2" min="1" max="12" required  autocomplete=" cc-exp-month">
+            <label for="cardMonth">MM</label>
+          </div>
+          <span class="date_divider">/</span>
+          <div class="field-card_year field">
+            <input type="text" class="form-input " id="cardYear" pattern="[0-9]*" maxlength="2" inputmode="numeric" required  autocomplete="cc-exp-year">
+            <label for="cardYear">YY</label>
+          </div>
+        </div>
+        <div class="field-card_cvv field">
+          <input type="text" class="form-input" id="cardCvv" pattern="[0-9]*" minlength="3" maxlength="3" required inputmode="numeric" autocomplete="of">
+          <label for="cardCvv">CVV</label>
+        </div>
+        <div class="field-card_email field">
+          <input type="email" class="form-input" id="email"  minlength="1" maxlength="30" required>
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <button class="btn" disabled>Оплатить</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,192 @@
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px;
+  font-family: EuclidCircularB, sans-serif;
+  font-weight: 400
+}
+
+body {
+  background-color: #fafafa;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+input {
+  width: 100%;
+  padding: 4px  16px 4px 0;
+  border: none;
+  border-bottom: 2px #e3e3e3 solid;
+
+  letter-spacing: 2px;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+
+
+
+input:focus {
+  outline: none;
+}
+
+
+label {
+  position: absolute;
+  pointer-events: none;
+  left: 16px;
+  top: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: 40px;
+  transition: .3s;
+  color: #636f78;
+}
+input:valid ~ label,
+input:focus ~ label{
+  top: -12px;
+  left: 0;
+  font-size: 0.67rem;
+
+}
+
+
+
+span {
+  padding: 0 10px;
+}
+
+.container {
+  max-width: 420px;
+  max-height: 250px;
+  margin: auto;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 15px;
+}
+
+
+
+.card {
+  padding: 20px 24px 24px;
+  margin: 15% 0 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 30px hsl(0deg 0% 66% / 25%);
+  background-color: #fff;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-description {
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+
+.payment-list {
+  display: flex;
+  justify-content: end;
+  margin: 0;
+  gap: 15px;
+}
+
+.form-item {
+  flex-wrap: wrap;
+}
+
+.form-item:last-of-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.field {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  padding-top: 12px;
+  margin-bottom: 16px;
+}
+
+/*
+.field::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #e3e3e3;
+}
+*/
+
+
+.field-card_pan {
+  width: 100%;
+}
+
+.field-card_date {
+  display: flex;
+  align-items: center;
+}
+
+.field-card_month, .field-card_year {
+  min-width: 50px;
+  max-width: 64px;
+
+}
+
+.field-card_cvv {
+  display: flex;
+  margin-left: auto;
+  max-width: 128px;
+  min-width: 80px;
+}
+
+.field-card_email {
+  width: 100%;
+}
+
+.field-card_cvv>.form-input {
+  -webkit-text-security: disc;
+}
+.card_info-cvv {
+  position: relative;
+  margin-left: 4%;
+  font-size: 12px;
+}
+
+.card_info-cvv>svg:hover  {
+  cursor: pointer;
+}
+.btn  {
+  width: 100%;
+  height: 56px;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  background-color: #ff7226 ;
+  border: none;
+  font-family: inherit;
+  font-size: 1.2rem;
+  color: #fff;
+
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn:disabled{
+
+  cursor: default;
+  background-color: #d3d3d3;
+}
