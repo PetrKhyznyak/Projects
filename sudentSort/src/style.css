@@ -1,0 +1,24 @@
+.error {
+  margin-bottom: 5px;
+  color: #da3333;
+}
+
+.show {
+  display: table-row;
+}
+
+.filterForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  width: calc(25% - 20px);
+}
+
+.hide {
+  display: none;
+}

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module">
+    import {Card, StartBtn} from "./main.js";
+    const container = document.querySelector('.container');
+    const startBtn = new StartBtn().createBtn();
+    let count = 0;
+    let isFlipped = false;
+    let firstCard, secondCard;
+    let arr = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6]
+
+    const createGameArr = function (arr) {
+      let j, temp;
+      for (let i = arr.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        temp = arr[j];
+        arr[j] = arr[i];
+        arr[i] = temp;
+      }
+      return arr;
+
+    }
+    const flip = function (card) {
+      card.open = true;
+      if (!isFlipped) {
+        isFlipped = !isFlipped;
+        firstCard = card;
+        console.log(firstCard);
+      } else {
+        isFlipped = !isFlipped;
+        secondCard = card;
+        console.log(secondCard);
+
+      }
+      if (firstCard && secondCard) {
+        console.log(firstCard.cardElement !== secondCard.cardElement)
+        if (firstCard.cardNumber === secondCard.cardNumber && firstCard.cardElement !== secondCard.cardElement) {
+          firstCard.success = true;
+          secondCard.success = true;
+          count += 2;
+        } else {
+          firstCard.open = false;
+          secondCard.open = false;
+        }
+        firstCard = null;
+        secondCard = null;
+      }
+
+      if (document.querySelectorAll('.card-element').length === count) {
+        count = 0;
+        setTimeout(() =>{
+          alert("Вы победили!");
+          container.innerHTML = '';
+          startBtn.addEventListener("click", () => startGame(container, arr))
+          container.append(startBtn);
+        }, 500)
+      }
+    }
+
+
+    const startGame = function (container, arr) {
+      container.innerHTML = ''
+      for (const cardNum of arr) {
+        let card = new Card(container, cardNum, flip);
+        card.createElement()
+      }
+    }
+    startGame(container, createGameArr(arr));
+
+
+
+
+
+
+
+  </script>
+</head>
+<body>
+  <div class="container">
+  </div>
+
+</body>
+</html>
